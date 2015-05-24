@@ -20,7 +20,7 @@ public class Cipher
 	public Cipher()
 	{
 		key= new String[rows][cols];
-		fileInput("Default key");
+		fileInput("Default Key");
 	}
 
 	public Cipher(String keyName, int numRows, int numCols)
@@ -285,7 +285,7 @@ public class Cipher
 		basic = new Cipher();
 		//System.out.println("Input text to be encoded." /*No punctuation."*/);
 		//String original = sc.nextLine();
-		return basic.encode(original);
+		return basic.encode(original).toLowerCase();
 		//System.out.println("Original: " + original + "\n Encoded: " + encoded);
 	}
 
@@ -294,7 +294,7 @@ public class Cipher
 		basic = new Cipher();
 		//System.out.println("Input text to be decoded");
 		//String encoded = sc.nextLine();
-		return basic.decode(encoded);
+		return basic.decode(encoded).toLowerCase();
 		//System.out.println("Encoded: " + encoded + "\n Decoded: " + decoded);
 	}
 
