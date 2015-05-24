@@ -42,7 +42,7 @@ public class Cipher
 			{
 				for(int col = 0; col< cols; col++)
 				{
-					key[row][col] = scf.next();
+					key[row][col] = scf.next().toUpperCase();
 				}
 			}
 		} catch (FileNotFoundException e)
@@ -95,15 +95,15 @@ public class Cipher
 				sub1 = key[(r1+1)%rows][c1];
 				sub2 = key[(r2+1)%rows][c2];
 			}else if((r1>r2 && c1>c2)||(r1<r2 && c1<c2))
-				{
-					sub1 = key[r1][c2];
-					sub2 = key[r2][c1];
-				}else if((r1>r2 && c1<c2)||(r1<r2 && c1>c2))
-				{
-					sub1 = key[r2][c1];
-					sub2 = key[r1][c2];
-				}
-			
+			{
+				sub1 = key[r1][c2];
+				sub2 = key[r2][c1];
+			}else if((r1>r2 && c1<c2)||(r1<r2 && c1>c2))
+			{
+				sub1 = key[r2][c1];
+				sub2 = key[r1][c2];
+			}
+
 			encoded+= sub1+sub2+" ";
 			i++;
 		}
@@ -197,14 +197,14 @@ public class Cipher
 				sub1 = key[(r1-1+rows)%rows][c1];
 				sub2 = key[(r2-1+rows)%rows][c2];
 			}else if((r1>r2 && c1>c2)||(r1<r2 && c1<c2))
-				{
-					sub2 = key[r1][c2];
-					sub1 = key[r2][c1];
-				}else if((r1>r2 && c1<c2)||(r1<r2 && c1>c2))
-				{
-					sub2 = key[r2][c1];
-					sub1 = key[r1][c2];
-				}
+			{
+				sub2 = key[r1][c2];
+				sub1 = key[r2][c1];
+			}else if((r1>r2 && c1<c2)||(r1<r2 && c1>c2))
+			{
+				sub2 = key[r2][c1];
+				sub1 = key[r1][c2];
+			}
 
 			decoded+= sub1+sub2+" ";
 			i++;
@@ -217,6 +217,7 @@ public class Cipher
 		in = swapPairsDecode(in);
 		in = removeSpaces(in);
 		in = undosplitDuplicates(in);
+		//in = in.toLowerCase();
 		if(in.endsWith("x"))
 		{
 			in = in.substring(0, in.length()-1);
@@ -233,14 +234,17 @@ public class Cipher
 
 	private String undosplitDuplicates(String in)
 	{
-		for(int i = in.length()-1; i>=2; i--)
+		while(in.indexOf("X") != -1)
 		{
-			if((in.substring(i, i+1).equals(in.substring(i-2, i-1)))&&in.substring(i-1, i).equals("X"))
-			{
-				in = in.substring(0, i) + in.substring(i);
-				i++;
-			}
-			
+			int i = in.lastIndexOf("X");
+			if(i == in.length()-1)
+				in = in.substring(0, i) + "x";
+			else
+				if(i>=1 && i<in.length() && in.substring(i-1, i).equalsIgnoreCase(in.substring(i+1, i+2)))
+				{
+					in = in.substring(0, i) + in.substring(i+1);
+				}else
+					in = in.substring(0, i) + "x" + in.substring(i+1);
 		}
 		return in;
 	}
@@ -262,19 +266,19 @@ public class Cipher
 
 
 	//UI
-//	public static void run()
-//	{
-//		System.out.println("Would you like to encode or decode?");
-//		String choice = sc.nextLine();
-//		if(choice.equalsIgnoreCase("decode"))
-//			uiDecode();
-//		else
-//			uiEncode();
-//		System.out.println("Would you like to continue?");
-//		choice = sc.nextLine();
-//		if(choice.equalsIgnoreCase("yes"))
-//			run();
-//	}
+	//	public static void run()
+	//	{
+	//		System.out.println("Would you like to encode or decode?");
+	//		String choice = sc.nextLine();
+	//		if(choice.equalsIgnoreCase("decode"))
+	//			uiDecode();
+	//		else
+	//			uiEncode();
+	//		System.out.println("Would you like to continue?");
+	//		choice = sc.nextLine();
+	//		if(choice.equalsIgnoreCase("yes"))
+	//			run();
+	//	}
 
 	public static String uiEncode(String original)
 	{
@@ -295,12 +299,12 @@ public class Cipher
 	}
 
 
-//	public static void main(String [] args)
-//	{
-//		System.out.println(uiEncode("at at at"));
-//		System.out.println(uiDecode("tototo"));
-//		System.out.println(uiEncode("as as as"));
-//		System.out.println(uiDecode(uiEncode("as as as")));
-//		System.out.println(basic);
-//	}
+	//	public static void main(String [] args)
+	//	{
+	//		System.out.println(uiEncode("at at at"));
+	//		System.out.println(uiDecode("tototo"));
+	//		System.out.println(uiEncode("as as as"));
+	//		System.out.println(uiDecode(uiEncode("as as as")));
+	//		System.out.println(basic);
+	//	}
 }
