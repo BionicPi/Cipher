@@ -42,7 +42,7 @@ public class Cipher
 			{
 				for(int col = 0; col< cols; col++)
 				{
-					key[row][col] = scf.next().toUpperCase();
+					key[row][col] = scf.next().toUpperCase(); //TODO Make it keep capitalization//TODO Make it keep capitalization
 				}
 			}
 		} catch (FileNotFoundException e)
@@ -113,7 +113,7 @@ public class Cipher
 	private String toPairs(String in)
 	{
 		String o = "";
-		in = in.toUpperCase();
+		in = in.toUpperCase(); //TODO Make it keep capitalization//TODO Make it keep capitalization
 		in = removeSpaces(in);
 		//in = splitDuplicates(in);
 		for(int i = 0; i<in.length()-1; i++)
@@ -137,7 +137,7 @@ public class Cipher
 	private String toFives(String in)
 	{
 		String o = "";
-		in = in.toUpperCase();
+		in = in.toUpperCase(); //TODO Make it keep capitalization
 		in = removeSpaces(in);
 		for(int i = 0; i<in.length(); i++)
 		{
@@ -217,12 +217,12 @@ public class Cipher
 		in = swapPairsDecode(in);
 		in = removeSpaces(in);
 		in = undosplitDuplicates(in);
-		//in = in.toLowerCase();
-		if(in.endsWith("x"))
+		//in = in.toLowerCase(); //TODO make it keep capitalization.
+		if(in.endsWith("X"))
 		{
 			in = in.substring(0, in.length()-1);
 		}
-		return in.toUpperCase();
+		return in.toUpperCase(); //TODO Make it keep capitalization
 	}
 
 
@@ -285,7 +285,7 @@ public class Cipher
 		basic = new Cipher();
 		//System.out.println("Input text to be encoded." /*No punctuation."*/);
 		//String original = sc.nextLine();
-		return basic.encode(original).toLowerCase();
+		return basic.encode(original).toLowerCase(); //TODO make it keep capitalization.
 		//System.out.println("Original: " + original + "\n Encoded: " + encoded);
 	}
 
@@ -294,7 +294,7 @@ public class Cipher
 		basic = new Cipher();
 		//System.out.println("Input text to be decoded");
 		//String encoded = sc.nextLine();
-		return basic.decode(encoded).toLowerCase();
+		return basic.decode(encoded).toLowerCase(); //TODO make it keep capitalization.
 		//System.out.println("Encoded: " + encoded + "\n Decoded: " + decoded);
 	}
 
