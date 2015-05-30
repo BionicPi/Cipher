@@ -34,6 +34,8 @@ public class CipherGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					Cipher.basic = new Cipher();
+					Cipher.defaultInput();
 					CipherGUI window = new CipherGUI();
 					window.frmCipher.setVisible(true);
 				} catch (Exception e) {

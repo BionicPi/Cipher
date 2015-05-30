@@ -7,20 +7,25 @@ package Cipher;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Cipher
 {
-	private static Cipher basic;
+	public static Cipher basic;
 	private String[][] key;
-	private static int rows = 10;
+	private static int rows = 11;
 	private static int cols = 10;
+	private static String defaultKey = "A B C D E F G H I J"
+			+ "Ö _ + ` ~ < , > . K" + "ö = a p l e c 4 \\ L"
+			+ "Ä - [ v w x d 5 ' M" + "ä ) b u t r f 6 \" N"
+			+ "Å ( q 2 3 z h 7 ; O" + "å * s g y 1 i 8 : P"
+			+ "space & o n m k j 9 / Q" + "{ ^ % $ # @ ! 0 ? R"
+			+ "} ] Z Y X W V U T S" + "enter tab é á í ô î ï ç Ç";
 
 	public Cipher()
 	{
 		key = new String[rows][cols];
-		fileInput("Capitalization Key");
+		fileInput("Whitespace Key");
 	}
 
 	public Cipher(String keyName, int numRows, int numCols)
@@ -28,6 +33,51 @@ public class Cipher
 		fileInput(keyName);
 		rows = numRows;
 		cols = numCols;
+	}
+
+	public static void defaultInput()
+	{
+		int i = 0;
+		for (int row = 0; row < rows; row++)
+		{
+			for (int col = 0; col < cols; col++)
+			{
+				if (defaultKey.substring(i, i + 1).equals(" "))
+					i++;
+				basic.key[row][col] = defaultKey.substring(i, i + 1);
+				try
+				{
+					if (defaultKey.substring(i, i + 1).equals("e")
+							&& defaultKey.substring(i + 1, i + 2).equals("n"))
+					{
+						basic.key[row][col] = "enter";
+						i += 4;
+					}
+					if (defaultKey.substring(i, i + 1).equals("s")
+							&& defaultKey.substring(i + 1, i + 2).equals("p"))
+					{
+						basic.key[row][col] = "space";
+						i += 4;
+					}
+					if (defaultKey.substring(i, i + 1).equals("t")
+							&& defaultKey.substring(i + 1, i + 2).equals("a"))
+					{
+						basic.key[row][col] = "tab";
+						i += 2;
+					}
+				} catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+				if (basic.key[row][col].equals("space"))
+					basic.key[row][col] = " ";
+				if (basic.key[row][col].equals("enter"))
+					basic.key[row][col] = "\n";
+				if (basic.key[row][col].equals("tab"))
+					basic.key[row][col] = "\t";
+				i++;
+			}
+		}
 	}
 
 	private void fileInput(String fileName)
@@ -42,9 +92,12 @@ public class Cipher
 				for (int col = 0; col < cols; col++)
 				{
 					key[row][col] = scf.next();
-					if(key[row][col].equals("space"))
+					if (key[row][col].equals("space"))
 						key[row][col] = " ";
-					//System.out.println(key[row][col]);
+					if (key[row][col].equals("enter"))
+						key[row][col] = "\n";
+					if (key[row][col].equals("tab"))
+						key[row][col] = "\t";
 				}
 			}
 			scf.close();
@@ -58,7 +111,6 @@ public class Cipher
 	private String encode(String in)
 	{
 		in = swapPairsEncode(in);
-		in = toFives(in);
 		return in;
 	}
 
@@ -66,7 +118,6 @@ public class Cipher
 	{
 		String encoded = "";
 		in = toPairs(in);
-		//in = this.removeSpaces(in);
 		for (int i = 0; i < in.length() - 1; i++)
 		{
 			String sub = in.substring(i, i + 2);
@@ -113,7 +164,6 @@ public class Cipher
 
 			encoded += sub1 + sub2;
 			i++;
-			//System.out.println(encoded);
 		}
 		return encoded;
 	}
@@ -121,10 +171,6 @@ public class Cipher
 	private String toPairs(String in)
 	{
 		String o = "";
-		// in = in.toUpperCase(); //TODO Make it keep capitalization//TODO Make
-		// it keep capitalization
-		////in = removeSpaces(in);
-		// in = splitDuplicates(in);
 		for (int i = 0; i < in.length() - 1; i++)
 		{
 			if (in.substring(i, i + 1).equals(in.substring(i + 1, i + 2)))
@@ -140,28 +186,34 @@ public class Cipher
 		{
 			o += in.substring(in.length() - 1) + "X";
 		}
-		//System.out.println(o);
 		return o;
 	}
 
+	/**
+	 * @deprecated
+	 * 
+	 * @param in
+	 * @return
+	 */
+	@SuppressWarnings("unused")
 	private String toFives(String in)
 	{
-//		String o = "";
-//		// in = in.toUpperCase(); //TODO Make it keep capitalization
-//		//in = removeSpaces(in);
-//		for (int i = 0; i < in.length(); i++)
-//		{
-//			if (in.length() - i >= 5)
-//			{
-//				o += in.substring(i, i + 5) + " ";
-//				i += 4;
-//			} else
-//			{
-//				o += in.substring(i);
-//				i += in.length();
-//			}
-//		}
-//		return o;
+		// String o = "";
+		// // in = in.toUpperCase();
+		// //in = removeSpaces(in);
+		// for (int i = 0; i < in.length(); i++)
+		// {
+		// if (in.length() - i >= 5)
+		// {
+		// o += in.substring(i, i + 5) + " ";
+		// i += 4;
+		// } else
+		// {
+		// o += in.substring(i);
+		// i += in.length();
+		// }
+		// }
+		// return o;
 		return in;
 	}
 
@@ -175,8 +227,6 @@ public class Cipher
 	private String swapPairsDecode(String in)
 	{
 		String decoded = "";
-		//System.out.println(in);
-		//in = this.removeSpaces(in);
 		for (int i = 0; i < in.length() - 1; i++)
 		{
 			String sub = in.substring(i, i + 2);
@@ -222,9 +272,7 @@ public class Cipher
 			}
 
 			decoded += sub1 + sub2;
-			//System.out.println(decoded);
 			i++;
-			//i++;
 		}
 		return decoded;
 	}
@@ -232,22 +280,15 @@ public class Cipher
 	private String fromPairs(String in)
 	{
 		in = swapPairsDecode(in);
-		//in = removeSpaces(in);
 		in = undosplitDuplicates(in);
-		// in = in.toLowerCase(); //TODO make it keep capitalization.
 		if (in.endsWith("X"))
 		{
 			in = in.substring(0, in.length() - 1);
 		}
-		return in;// .toUpperCase(); //TODO Make it keep capitalization
+		return in;
 	}
 
 	// Utility
-	private String removeSpaces(String in)
-	{
-		return in;//.replace(new String(" "), new String());
-	}
-
 	private String undosplitDuplicates(String in)
 	{
 		while (in.indexOf("X") != -1)
@@ -258,7 +299,7 @@ public class Cipher
 			else if (i >= 1
 					&& i < in.length()
 					&& in.substring(i - 1, i)
-					.equals(in.substring(i + 1, i + 2)))
+							.equals(in.substring(i + 1, i + 2)))
 			{
 				in = in.substring(0, i) + in.substring(i + 1);
 			} else
@@ -274,7 +315,14 @@ public class Cipher
 		{
 			for (int c = 0; c < cols; c++)
 			{
-				o += key[r][c];
+				if (key[r][c].equals(" "))
+					o += "space";
+				else if (key[r][c].equals("\n"))
+					o += "line break";
+				else if (key[r][c].equals("\t"))
+					o += "tab";
+				else
+					o += key[r][c];
 				o += "\t";
 			}
 			o += "\n";
@@ -282,48 +330,55 @@ public class Cipher
 		return o;
 	}
 
-	// UI
-	// public static void run()
-	// {
-	// //System.out.println("Would you like to encode or decode?");
-	// String choice = sc.nextLine();
-	// if(choice.equals("decode"))
-	// uiDecode();
-	// else
-	// uiEncode();
-	// //System.out.println("Would you like to continue?");
-	// choice = sc.nextLine();
-	// if(choice.equals("yes"))
-	// run();
-	// }
-
 	public static String uiEncode(String original)
 	{
-		basic = new Cipher();
-		// //System.out.println("Input text to be encoded." /*No punctuation."*/);
-		// String original = sc.nextLine();
-		return basic.encode(original); // .toLowerCase(); //TODO make it keep
-		// capitalization.
-		// //System.out.println("Original: " + original + "\n Encoded: " +
-		// encoded);
+		try
+		{
+			return basic.encode(original);
+		} catch (NullPointerException e)
+		{
+			try
+			{
+				basic = new Cipher();
+				return basic.encode(original);
+			} catch (NullPointerException e1)
+			{
+				try
+				{
+					defaultInput();
+					return basic.encode(original);
+				} catch (Exception e2)
+				{
+					e2.printStackTrace();
+					return "Fatal error reached.";
+				}
+			}
+		}
 	}
 
 	public static String uiDecode(String encoded)
 	{
-		basic = new Cipher();
-		// //System.out.println("Input text to be decoded");
-		// String encoded = sc.nextLine();
-		return basic.decode(encoded); // .toLowerCase(); //TODO make it keep
-		// capitalization.
-		// //System.out.println("Encoded: " + encoded + "\n Decoded: " + decoded);
+		try
+		{
+			return basic.decode(encoded);
+		} catch (NullPointerException e)
+		{
+			try
+			{
+				basic = new Cipher();
+				return basic.decode(encoded);
+			} catch (NullPointerException e1)
+			{
+				try
+				{
+					defaultInput();
+					return basic.decode(encoded);
+				} catch (Exception e2)
+				{
+					e2.printStackTrace();
+					return "Fatal error reached.";
+				}
+			}
+		}
 	}
-
-	// public static void main(String [] args)
-	// {
-	// //System.out.println(uiEncode("at at at"));
-	// //System.out.println(uiDecode("tototo"));
-	// //System.out.println(uiEncode("as as as"));
-	// //System.out.println(uiDecode(uiEncode("as as as")));
-	// //System.out.println(basic);
-	// }
 }
