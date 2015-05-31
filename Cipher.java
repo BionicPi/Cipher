@@ -16,11 +16,16 @@ public class Cipher
 	private static int rows = 11;
 	private static int cols = 10;
 	private static String defaultKey = "A B C D E F G H I J"
-			+ "Ö _ + ` ~ < , > . K" + "ö = a p l e c 4 \\ L"
-			+ "Ä - [ v w x d 5 ' M" + "ä ) b u t r f 6 \" N"
-			+ "Å ( q 2 3 z h 7 ; O" + "å * s g y 1 i 8 : P"
-			+ "space & o n m k j 9 / Q" + "{ ^ % $ # @ ! 0 ? R"
-			+ "} ] Z Y X W V U T S" + "enter tab é á í ô î ï ç Ç";
+			+ "Ö _ + ` ~ < , > . K" 
+			+ "ö = a p l e c 4 \\ L"
+			+ "Ä - [ v w x d 5 ' M" 
+			+ "ä ) b u t r f 6 \" N"
+			+ "Å ( q 2 3 z h 7 ; O" 
+			+ "å * s g y 1 i 8 : P"
+			+ "space & o n m k j 9 / Q" 
+			+ "{ ^ % $ # @ ! 0 ? R"
+			+ "} ] Z Y X W V U T S" 
+			+ "enter tab é á í ô î ï ç Ç";
 
 	public Cipher()
 	{
@@ -171,18 +176,20 @@ public class Cipher
 	private String toPairs(String in)
 	{
 		String o = "";
+		int x = 0;
 		for (int i = 0; i < in.length() - 1; i++)
 		{
 			if (in.substring(i, i + 1).equals(in.substring(i + 1, i + 2)))
 			{
 				o += in.substring(i, i + 1) + "X";
+				x++;
 			} else
 			{
 				o += in.substring(i, i + 2);
 				i++;
 			}
 		}
-		if (in.length() % 2 != 0)
+		if (x % 2 != 0)
 		{
 			o += in.substring(in.length() - 1) + "X";
 		}
@@ -198,23 +205,23 @@ public class Cipher
 	@SuppressWarnings("unused")
 	private String toFives(String in)
 	{
-		// String o = "";
-		// // in = in.toUpperCase();
-		// //in = removeSpaces(in);
-		// for (int i = 0; i < in.length(); i++)
-		// {
-		// if (in.length() - i >= 5)
-		// {
-		// o += in.substring(i, i + 5) + " ";
-		// i += 4;
-		// } else
-		// {
-		// o += in.substring(i);
-		// i += in.length();
-		// }
-		// }
-		// return o;
-		return in;
+		 String o = "";
+		 // in = in.toUpperCase();
+		 //in = removeSpaces(in);
+		 for (int i = 0; i < in.length(); i++)
+		 {
+		 if (in.length() - i >= 5)
+		 {
+		 o += in.substring(i, i + 5) + " ";
+		 i += 4;
+		 } else
+		 {
+		 o += in.substring(i);
+		 i += in.length();
+		 }
+		 }
+		 return o;
+//		return in;
 	}
 
 	// Decoding
