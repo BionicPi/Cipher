@@ -55,16 +55,31 @@ public class Key
 		ArrayList[] keywords = {L1, L2, L3, L4, L5, L6};
 
 		for(ArrayList<String> l:keywords)
-		{
 			for(String s:l)
-			{
 				for(int i = 0; i<keywords.length; i++)
 				{
 					while(keywords[i].contains(s))
 						keywords[i].remove(s);
 					tempOrder.remove(s);
 				}
-			}
+		
+		String[][] outkey = new String[11][10];
+		
+		for(int i = 0; i<keywords.length;i+=2)
+			for(int j = 0; j<keywords[i].size(); i++)
+				outkey[i][j] = keywords[i].get(j);
+		
+		int c = 0;
+		for(int i = 0; i<11; i++)
+		{
+			for(int j = i; j<outkey[i].length; j++)
+				if(outkey[i][j] == null)
+				{
+					outkey[i][j] = tempOrder.get(c);
+					c++
+				}
+			
+			for()
 		}
 
 
