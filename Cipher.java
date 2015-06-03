@@ -30,18 +30,19 @@ public class Cipher
 	public Cipher()
 	{
 		key = new String[rows][cols];
-		fileInput("Whitespace Key");
+		defaultInput();
 	}
 
-	public Cipher(String keyName, int numRows, int numCols)
+	public Cipher(String keyName)
 	{
+		key = new String[rows][cols];
+		basic = new Cipher();
 		fileInput(keyName);
-		rows = numRows;
-		cols = numCols;
 	}
 
 	public static void defaultInput()
 	{
+		basic = new Cipher();
 		int i = 0;
 		for (int row = 0; row < rows; row++)
 		{
