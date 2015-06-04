@@ -209,7 +209,7 @@ public class KeyGUI
 		gbc_verticalStrut_2.gridy = 8;
 		frame.getContentPane().add(verticalStrut_2, gbc_verticalStrut_2);
 		
-		JButton btnConfirm = new JButton("Confirm Key");
+		JButton btnConfirm = new JButton("Confirm and Generate Key");
 		btnConfirm.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
