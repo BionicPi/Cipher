@@ -1,16 +1,8 @@
 package Cipher;
 
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class Key
@@ -42,6 +34,7 @@ public class Key
 		ArrayList<String> L5 = convertString(fifth);
 		// ArrayList<String> L6 = convertString(sixth);
 
+		@SuppressWarnings("rawtypes")
 		ArrayList[] keywords = { L1, L2, L3, L4, L5 /* , L6 */};
 
 		for (int j = 0; j < keywords.length - 1; j++)

@@ -1,8 +1,9 @@
 package Cipher;
 
+import java.awt.EventQueue;
+
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -30,6 +31,7 @@ public class CipherGUI
 	private JTextArea outputField;
 	private JScrollPane scrollPane;
 	private JButton btnDecode;
+	private JButton btnEncode;
 	private JScrollPane scrollPane_1;
 	private Component rigidArea;
 
@@ -80,7 +82,7 @@ public class CipherGUI
 		gridBagLayout.rowWeights = new double[] { 1.0, 1.0, 1.0 };
 		frmCipher.getContentPane().setLayout(gridBagLayout);
 
-		JButton encode = new JButton("Encode");
+		btnEncode = new JButton("Encode");
 
 		scrollPane_1 = new JScrollPane();
 		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
@@ -101,7 +103,7 @@ public class CipherGUI
 		gbc_btnEncode.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEncode.gridx = 1;
 		gbc_btnEncode.gridy = 2;
-		frmCipher.getContentPane().add(encode, gbc_btnEncode);
+		frmCipher.getContentPane().add(btnEncode, gbc_btnEncode);
 
 		btnDecode = new JButton("Decode");
 
@@ -111,11 +113,12 @@ public class CipherGUI
 		gbc_rigidArea.gridx = 3;
 		gbc_rigidArea.gridy = 2;
 		frmCipher.getContentPane().add(rigidArea, gbc_rigidArea);
-		GridBagConstraints gbc_btnExponents = new GridBagConstraints();
-		gbc_btnExponents.insets = new Insets(0, 0, 5, 5);
-		gbc_btnExponents.gridx = 4;
-		gbc_btnExponents.gridy = 2;
-		frmCipher.getContentPane().add(btnDecode, gbc_btnExponents);
+		
+		GridBagConstraints gbc_btnDecode = new GridBagConstraints();
+		gbc_btnDecode.insets = new Insets(0, 0, 5, 5);
+		gbc_btnDecode.gridx = 4;
+		gbc_btnDecode.gridy = 2;
+		frmCipher.getContentPane().add(btnDecode, gbc_btnDecode);
 
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -170,7 +173,7 @@ public class CipherGUI
 			}
 		});
 
-		encode.addMouseListener(new MouseAdapter()
+		btnEncode.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mouseClicked(MouseEvent e)

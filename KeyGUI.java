@@ -17,15 +17,13 @@ import java.awt.event.MouseEvent;
 public class KeyGUI
 {
 
-	private JFrame frame;
+	private JFrame frmKeyGenerator;
 	private JTextField tfFileName;
 	private JTextField tfFirst;
 	private JTextField tfSecond;
 	private JTextField tfThird;
 	private JTextField tfFourth;
 	private JTextField tfFifth;
-	private JTextField tfSixth;
-
 	/**
 	 * Launch the application.
 	 */
@@ -38,7 +36,7 @@ public class KeyGUI
 				try
 				{
 					KeyGUI window = new KeyGUI();
-					window.frame.setVisible(true);
+					window.frmKeyGenerator.setVisible(true);
 				} catch (Exception e)
 				{
 					e.printStackTrace();
@@ -60,15 +58,16 @@ public class KeyGUI
 	 */
 	private void initialize()
 	{
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmKeyGenerator = new JFrame();
+		frmKeyGenerator.setTitle("Key Generator");
+		frmKeyGenerator.setBounds(100, 100, 450, 300);
+		frmKeyGenerator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {30, 30, 30, 30, 30};
 		gridBagLayout.rowHeights = new int[] {30, 30, 10, 30, 30, 30, 30, 30, 30};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-		frame.getContentPane().setLayout(gridBagLayout);
+		frmKeyGenerator.getContentPane().setLayout(gridBagLayout);
 		
 		
 		JLabel lblName = new JLabel("File Name");
@@ -77,7 +76,7 @@ public class KeyGUI
 		gbc_lblName.anchor = GridBagConstraints.EAST;
 		gbc_lblName.gridx = 1;
 		gbc_lblName.gridy = 1;
-		frame.getContentPane().add(lblName, gbc_lblName);
+		frmKeyGenerator.getContentPane().add(lblName, gbc_lblName);
 		
 		tfFileName = new JTextField();
 		GridBagConstraints gbc_tfFileName = new GridBagConstraints();
@@ -85,7 +84,7 @@ public class KeyGUI
 		gbc_tfFileName.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tfFileName.gridx = 2;
 		gbc_tfFileName.gridy = 1;
-		frame.getContentPane().add(tfFileName, gbc_tfFileName);
+		frmKeyGenerator.getContentPane().add(tfFileName, gbc_tfFileName);
 		tfFileName.setColumns(10);
 		
 		
@@ -94,14 +93,14 @@ public class KeyGUI
 		gbc_verticalStrut.insets = new Insets(0, 0, 5, 5);
 		gbc_verticalStrut.gridx = 1;
 		gbc_verticalStrut.gridy = 2;
-		frame.getContentPane().add(verticalStrut, gbc_verticalStrut);
+		frmKeyGenerator.getContentPane().add(verticalStrut, gbc_verticalStrut);
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut = new GridBagConstraints();
 		gbc_horizontalStrut.insets = new Insets(0, 0, 5, 5);
 		gbc_horizontalStrut.gridx = 0;
 		gbc_horizontalStrut.gridy = 3;
-		frame.getContentPane().add(horizontalStrut, gbc_horizontalStrut);
+		frmKeyGenerator.getContentPane().add(horizontalStrut, gbc_horizontalStrut);
 		
 		
 		JLabel lblFirst = new JLabel("First Word");
@@ -110,7 +109,7 @@ public class KeyGUI
 		gbc_lblFirst.insets = new Insets(0, 0, 5, 5);
 		gbc_lblFirst.gridx = 1;
 		gbc_lblFirst.gridy = 3;
-		frame.getContentPane().add(lblFirst, gbc_lblFirst);
+		frmKeyGenerator.getContentPane().add(lblFirst, gbc_lblFirst);
 		
 		tfFirst = new JTextField();
 		GridBagConstraints gbc_tfFirst = new GridBagConstraints();
@@ -118,7 +117,7 @@ public class KeyGUI
 		gbc_tfFirst.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tfFirst.gridx = 2;
 		gbc_tfFirst.gridy = 3;
-		frame.getContentPane().add(tfFirst, gbc_tfFirst);
+		frmKeyGenerator.getContentPane().add(tfFirst, gbc_tfFirst);
 		tfFirst.setColumns(10);
 		
 		
@@ -127,7 +126,7 @@ public class KeyGUI
 		gbc_horizontalStrut_1.insets = new Insets(0, 0, 5, 0);
 		gbc_horizontalStrut_1.gridx = 3;
 		gbc_horizontalStrut_1.gridy = 3;
-		frame.getContentPane().add(horizontalStrut_1, gbc_horizontalStrut_1);
+		frmKeyGenerator.getContentPane().add(horizontalStrut_1, gbc_horizontalStrut_1);
 		
 		
 		JLabel lblSecond = new JLabel("New label");
@@ -136,7 +135,7 @@ public class KeyGUI
 		gbc_lblSecond.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSecond.gridx = 1;
 		gbc_lblSecond.gridy = 4;
-		frame.getContentPane().add(lblSecond, gbc_lblSecond);
+		frmKeyGenerator.getContentPane().add(lblSecond, gbc_lblSecond);
 		
 		tfSecond = new JTextField();
 		tfSecond.setColumns(10);
@@ -145,7 +144,7 @@ public class KeyGUI
 		gbc_tfSecond.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tfSecond.gridx = 2;
 		gbc_tfSecond.gridy = 4;
-		frame.getContentPane().add(tfSecond, gbc_tfSecond);
+		frmKeyGenerator.getContentPane().add(tfSecond, gbc_tfSecond);
 		
 		
 		JLabel lblThird = new JLabel("Third Word");
@@ -154,7 +153,7 @@ public class KeyGUI
 		gbc_lblThird.insets = new Insets(0, 0, 5, 5);
 		gbc_lblThird.gridx = 1;
 		gbc_lblThird.gridy = 5;
-		frame.getContentPane().add(lblThird, gbc_lblThird);
+		frmKeyGenerator.getContentPane().add(lblThird, gbc_lblThird);
 		
 		tfThird = new JTextField();
 		GridBagConstraints gbc_tfThird = new GridBagConstraints();
@@ -162,7 +161,7 @@ public class KeyGUI
 		gbc_tfThird.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tfThird.gridx = 2;
 		gbc_tfThird.gridy = 5;
-		frame.getContentPane().add(tfThird, gbc_tfThird);
+		frmKeyGenerator.getContentPane().add(tfThird, gbc_tfThird);
 		tfThird.setColumns(10);
 		
 		
@@ -172,7 +171,7 @@ public class KeyGUI
 		gbc_lblFourth.insets = new Insets(0, 0, 5, 5);
 		gbc_lblFourth.gridx = 1;
 		gbc_lblFourth.gridy = 6;
-		frame.getContentPane().add(lblFourth, gbc_lblFourth);
+		frmKeyGenerator.getContentPane().add(lblFourth, gbc_lblFourth);
 		
 		tfFourth = new JTextField();
 		GridBagConstraints gbc_tfFourth = new GridBagConstraints();
@@ -180,7 +179,7 @@ public class KeyGUI
 		gbc_tfFourth.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tfFourth.gridx = 2;
 		gbc_tfFourth.gridy = 6;
-		frame.getContentPane().add(tfFourth, gbc_tfFourth);
+		frmKeyGenerator.getContentPane().add(tfFourth, gbc_tfFourth);
 		tfFourth.setColumns(10);
 		
 		
@@ -190,7 +189,7 @@ public class KeyGUI
 		gbc_lblFifth.insets = new Insets(0, 0, 5, 5);
 		gbc_lblFifth.gridx = 1;
 		gbc_lblFifth.gridy = 7;
-		frame.getContentPane().add(lblFifth, gbc_lblFifth);
+		frmKeyGenerator.getContentPane().add(lblFifth, gbc_lblFifth);
 		
 		tfFifth = new JTextField();
 		GridBagConstraints gbc_tfFifth = new GridBagConstraints();
@@ -198,7 +197,7 @@ public class KeyGUI
 		gbc_tfFifth.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tfFifth.gridx = 2;
 		gbc_tfFifth.gridy = 7;
-		frame.getContentPane().add(tfFifth, gbc_tfFifth);
+		frmKeyGenerator.getContentPane().add(tfFifth, gbc_tfFifth);
 		tfFifth.setColumns(10);
 		
 		
@@ -207,7 +206,7 @@ public class KeyGUI
 		gbc_verticalStrut_2.insets = new Insets(0, 0, 0, 5);
 		gbc_verticalStrut_2.gridx = 1;
 		gbc_verticalStrut_2.gridy = 8;
-		frame.getContentPane().add(verticalStrut_2, gbc_verticalStrut_2);
+		frmKeyGenerator.getContentPane().add(verticalStrut_2, gbc_verticalStrut_2);
 		
 		JButton btnConfirm = new JButton("Confirm and Generate Key");
 		btnConfirm.addMouseListener(new MouseAdapter() {
@@ -221,7 +220,7 @@ public class KeyGUI
 		gbc_btnConfirm.insets = new Insets(0, 0, 0, 5);
 		gbc_btnConfirm.gridx = 2;
 		gbc_btnConfirm.gridy = 8;
-		frame.getContentPane().add(btnConfirm, gbc_btnConfirm);
+		frmKeyGenerator.getContentPane().add(btnConfirm, gbc_btnConfirm);
 	}
 
 }
