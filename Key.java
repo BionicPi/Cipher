@@ -172,10 +172,10 @@ public class Key
 
 	public static void main(String[] args)
 	{
-		Key.makeKey("Key Maker Test", "I", "hate", "dealing", "with", "output");
-		String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖabcdefghijklmnopqrstuvwxyzåäö(){}[]<>1234567890+-=|\\:;\"'.,/?`~!@#$%^&*_éáíôîïçÇ";
-		System.out.println(str.length());
-		System.out.println(order.length);
-		makeeDeKeyeeOrdeae();
+//		Key.makeKey("Key Maker Test", "I", "hate", "dealing", "with", "output");
+//		String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖabcdefghijklmnopqrstuvwxyzåäö(){}[]<>1234567890+-=|\\:;\"'.,/?`~!@#$%^&*_éáíôîïçÇ";
+//		System.out.println(str.length());
+//		System.out.println(order.length);
+//		makeeDeKeyeeOrdeae();
 	}
 }
