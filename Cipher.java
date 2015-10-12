@@ -30,7 +30,6 @@ public class Cipher
 	public Cipher()
 	{
 		key = new String[rows][cols];
-		defaultInput();
 	}
 
 	public Cipher(String keyName)
