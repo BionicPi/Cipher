@@ -76,7 +76,7 @@ public class CipherGUI
 		frmCipher.setBounds(100, 100, 620, 260);
 		frmCipher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {30, 85, 85, 50, 170, 30};
+		gridBagLayout.columnWidths = new int[] { 30, 85, 85, 50, 170, 30 };
 		gridBagLayout.rowHeights = new int[] { 30, 40, 30, 40 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
 		gridBagLayout.rowWeights = new double[] { 1.0, 1.0, 1.0 };
@@ -113,7 +113,7 @@ public class CipherGUI
 		gbc_rigidArea.gridx = 3;
 		gbc_rigidArea.gridy = 2;
 		frmCipher.getContentPane().add(rigidArea, gbc_rigidArea);
-		
+
 		GridBagConstraints gbc_btnDecode = new GridBagConstraints();
 		gbc_btnDecode.insets = new Insets(0, 0, 5, 5);
 		gbc_btnDecode.gridx = 4;

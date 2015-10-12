@@ -206,23 +206,20 @@ public class Cipher
 	@SuppressWarnings("unused")
 	private String toFives(String in)
 	{
-		 String o = "";
-		 // in = in.toUpperCase();
-		 //in = removeSpaces(in);
-		 for (int i = 0; i < in.length(); i++)
-		 {
-		 if (in.length() - i >= 5)
-		 {
-		 o += in.substring(i, i + 5) + " ";
-		 i += 4;
-		 } else
-		 {
-		 o += in.substring(i);
-		 i += in.length();
-		 }
-		 }
-		 return o;
-//		return in;
+		String o = "";
+		for (int i = 0; i < in.length(); i++)
+		{
+			if (in.length() - i >= 5)
+			{
+				o += in.substring(i, i + 5) + " ";
+				i += 4;
+			} else
+			{
+				o += in.substring(i);
+				i += in.length();
+			}
+		}
+		return o;
 	}
 
 	// Decoding
@@ -304,10 +301,8 @@ public class Cipher
 			int i = in.lastIndexOf("X");
 			if (i == in.length() - 1)
 				in = in.substring(0, i) + "x";
-			else if (i >= 1
-					&& i < in.length()
-					&& in.substring(i - 1, i)
-							.equals(in.substring(i + 1, i + 2)))
+			else if (i >= 1 && i < in.length()
+					&& in.substring(i - 1, i).equals(in.substring(i + 1, i + 2)))
 			{
 				in = in.substring(0, i) + in.substring(i + 1);
 			} else
@@ -384,7 +379,7 @@ public class Cipher
 				} catch (Exception e2)
 				{
 					e2.printStackTrace();
-					return "Fatal error reached.";
+					return "Fatal error. Lack of key suspected.";
 				}
 			}
 		}

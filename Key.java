@@ -14,7 +14,7 @@ public class Key
 			"å", "ä", "ö", "(", ")", "{", "}", "[", "]", "<", ">", "1", "2", "3", "4",
 			"5", "6", "7", "8", "9", "0", "+", "-", "=", "|", "\\", ":", ";", "\"", "'",
 			".", ",", "/", "?", "`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "_",
-			"é", "á", "í", "ô", "î", "ï", "ç", "Ç", "space", "enter", "tab" };
+			"é", "á", "í", "ô", "î", "ï", "ç", "space", "enter", "tab" };
 
 	private static ArrayList<String> tempOrder;
 	private static int rows = 11;
@@ -45,6 +45,9 @@ public class Key
 						while (keywords[i].contains(keywords[j].get(k)))
 							keywords[i].remove(keywords[j].get(k));
 						tempOrder.remove(keywords[j].get(k));
+						for(int l = 0; l<keywords[i].size(); l++)
+							tempOrder.remove(keywords[i].get(l));
+							
 					}
 
 		String[][] outkey = new String[rows][cols];
@@ -100,7 +103,7 @@ public class Key
 	private static void writeFile(String in, String name) throws IOException
 	{
 		PrintWriter pw = new PrintWriter(new FileWriter(name));
-		pw.print(in);
+		//pw.print(in);
 		pw.close();
 	}
 
@@ -124,7 +127,8 @@ public class Key
 			}
 			o += "\n";
 		}
-		// System.out.println(o);
+		 //System.out.println(outkey.length + "," + outkey[1].length);
+		//System.out.println(o);
 		return o;
 	}
 
@@ -147,13 +151,13 @@ public class Key
 	 * "ä", "ö", "(", ")", "{", "}", "[", "]", "<", ">", "1", "2", "3", "4",
 	 * "5", "6", "7", "8", "9", "0", "+", "-", "=", "|", "\", ":", ";", """,
 	 * "'", ".", ",", "/", "?", "`", "~", "!", "@", "#", "$", "%", "^", "&",
-	 * "*", "_", "é", "á", "í", "ô", "î", "ï", "ç", "Ç", "space", "enter",
+	 * "*", "_", "é", "á", "í", "ô", "î", "ï", "ç", "space", "enter",
 	 * "tab"]
 	 */
 
 	public static void makeeDeKeyeeOrdeae()
 	{
-		String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖabcdefghijklmnopqrstuvwxyzåäö(){}[]<>1234567890+-=|\\:;\"'.,/?`~!@#$%^&*_éáíôîïçÇ";
+		String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖabcdefghijklmnopqrstuvwxyzåäö(){}[]<>1234567890+-=|\\:;\"'.,/?`~!@#$%^&*_éáíôîïç";
 		ArrayList<String> strs = new ArrayList<String>();
 		for (int i = 0; i < str.length(); i++)
 		{
@@ -163,10 +167,15 @@ public class Key
 		strs.add("\"enter\"");
 		strs.add("\"tab\"");
 		System.out.println(strs);
+		System.out.println(strs.size());
 	}
 
 	public static void main(String[] args)
 	{
 		Key.makeKey("Key Maker Test", "I", "hate", "dealing", "with", "output");
+		String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖabcdefghijklmnopqrstuvwxyzåäö(){}[]<>1234567890+-=|\\:;\"'.,/?`~!@#$%^&*_éáíôîïçÇ";
+		System.out.println(str.length());
+		System.out.println(order.length);
+		makeeDeKeyeeOrdeae();
 	}
 }
